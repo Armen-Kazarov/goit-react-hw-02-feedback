@@ -14,9 +14,9 @@ class App extends Component {
 
   handleOptions = ({ target }) => {
     const { feedback } = target.dataset;
-    this.setState(prevState => ({
-      [feedback]: prevState[feedback] + 1,
-    }));
+    this.setState({
+      [feedback]: this.state[feedback] + 1,
+    });
   };
 
   countTotalFeedback = () => {
@@ -26,9 +26,9 @@ class App extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    const { good, neutral, bad } = this.state;
+    const { good } = this.state;
 
-    return Math.round((good * 100) / (good + neutral + bad) || 0);
+    return Math.round((good * 100) / this.countTotalFeedback() || 0);
   };
 
   render() {
